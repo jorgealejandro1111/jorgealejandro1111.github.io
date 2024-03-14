@@ -1,0 +1,29 @@
+.parrafo{
+    border: 1px solid black;
+    text-align: center;
+    margin: 10px;
+    padding: 15px;
+    color: yellow;
+    
+    font-size: larger;
+    font-weight: 500;
+    background-color: gray;
+    background-image: url(ñorchi.jpg);
+    background-size: 5%;
+
+
+}
+div{
+    border: 2px solid yellow;
+    color: yellow;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url(ñorchi.jpg);
+    background-size: 20px;
+
+}
+span ul li{
+
+    color: yellowgreen;
+    font-style: italic;
+    font-weight: 800;
+}
