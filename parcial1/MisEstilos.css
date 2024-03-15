@@ -17,7 +17,6 @@ div{
     border: 2px solid yellow;
     color: yellow;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: url(ñorchi.jpg);
     background-size: 20px;
 
 }
@@ -26,4 +25,28 @@ span ul li{
     color: yellowgreen;
     font-style: italic;
     font-weight: 800;
+}
+
+#boton{
+    background-color: aquamarine;
+    border: none;
+    font-size: 30px;
+    width: 50%;
+    padding: 20px;
+    color: gray;
+
+}
+.texto{
+
+    color: black;
+}
+
+.link{
+
+    color: chocolate;
+}
+
+a:hover{
+
+    color: blue;
 }
