@@ -16,6 +16,13 @@
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6" aria-label="Slide 7"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="7" aria-label="Slide 8"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="8" aria-label="Slide 9"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="9" aria-label="Slide 10"></button>
             </div>
             <div class="carousel-inner">
               <div class="carousel-item active">
@@ -36,7 +43,66 @@
 
               </div>
               <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
+                <div class="alert alert-primary" role="alert">
+                  SELECT alumno.nombre, alumno.apellido1, alumno.apellido2 FROM alumno WHERE alumno.beca LIKE 'si%'
+                </div>
+                <img src="Consulta 3.png" class="d-block w-100" alt="...">
+                <p>Obtener el listado de alumnos que tengan beca.</p>
+              </div>
+              <div class="carousel-item">
+                <div class="alert alert-primary" role="alert">
+                  SELECT profesor.nombre,profesor.apellido1,profesor.apellido2, tlfcontactoprof.telefono FROM profesor INNER JOIN tlfcontactoprof ON tlfcontactoprof.idProfesor= profesor.idProfesor
+                </div>
+                <img src="Consulta 4.png" class="d-block w-100" alt="...">
+                <p>Obtener el listado de profesores (nombre y apellido), y su número de contacto.</p>
+              </div>
+              <div class="carousel-item">
+                <div class="alert alert-primary" role="alert">
+                  SELECT alumno.* FROM alumno INNER JOIN matricula ON alumno.idAlumno = matricula.idAlumno <br>
+                  INNER JOIN asignatura <br>
+                  ON matricula.idAsignatura = asignatura.idAsignatura WHERE asignatura.nombre = "Programacion"
+                </div>
+                <img src="Consulta 5.PNG" class="d-block w-100" alt="...">
+                <p>Obtener el listado de los alumnos (todos los campos) que están inscritos a la asignatura de programación </p>
+              </div>
+              <div class="carousel-item">
+                <div class="alert alert-primary" role="alert">
+                  SELECT profesor.*, asignatura.* FROM profesor INNER JOIN asignatura ON profesor.idProfesor = asignatura.coordinador ORDER BY profesor.nombre, asignatura.nombre
+                </div>
+                <img src="Consulta 6.PNG" class="d-block w-100" alt="...">
+                <p>Obtener listado de los profesores y asignaturas que imparten</p>
+              </div>
+              <div class="carousel-item">
+                <div class="alert alert-primary" role="alert">
+                  SELECT asignatura.nombre AS nombre_asignatura, COUNT(matricula.idAlumno) AS total_alumnos_inscritos FROM asignatura 
+                  INNER JOIN matricula 
+                  ON asignatura.idAsignatura = matricula.idAsignatura GROUP BY asignatura.idAsignatura ORDER BY total_alumnos_inscritos DESC
+                </div>
+                <img src="Consulta 7.PNG" class="d-block w-100" alt="...">
+                <p>Mostrar la asignatura que tiene mas alumnos inscritos y su total</p>
+              </div>
+              <div class="carousel-item">
+                <div class="alert alert-primary" role="alert">
+                  SELECT alumno.* FROM alumno 
+                  INNER JOIN matricula 
+                  ON alumno.idAlumno = matricula.idAlumno INNER JOIN asignatura ON matricula.idAsignatura = asignatura.idAsignatura WHERE asignatura.coordinador = 'PR016'
+                </div>
+                <img src="Consulta 8.PNG" class="d-block w-100" alt="...">
+                <p>Obtener el listado de alumnos que les da clase el profesor con id PR048 (José Manuel) , sin importar en que asignatura esté inscrito.</p>
+              </div>
+              <div class="carousel-item">
+                <div class="alert alert-primary" role="alert">
+                   codigo
+                </div>
+                <img src="Consulta 9.png" class="d-block w-100" alt="...">
+                <p>Obtener lista de cursos con asignatura y maestro que las imparte.</p>
+              </div>
+              <div class="carousel-item">
+                <div class="alert alert-primary" role="alert">
+                   codigo
+                </div>
+                <img src="Consulta 10.png" class="d-block w-100" alt="...">
+                <p>Obtener listado de alumnos con asignaturas que cursan, profesor que las imparte y curso a que pertenecen.</p>
               </div>
             </div>
             </center>
