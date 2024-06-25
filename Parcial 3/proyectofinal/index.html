@@ -101,11 +101,26 @@
               </div>
               <div class="carousel-item">
                 <div class="alert alert-primary" role="alert">
-                  SELECT al.idAlumno, al.nombre AS nombre_alumno, al.apellido1 AS apellido1_alumno, al.apellido2 AS apellido2_alumno, a.idAsignatura, <br>
-                  a.nombre AS nombre_asignatura, p.idProfesor,p.nombre AS nombre_profesor, p.apellido1 AS apellido1_profesor, p.apellido2 AS apellido2_profesor, <br>
-                  c.idCurso, c.nombreDescriptivo AS nombre_curso FROM alumno al JOIN matricula m ON al.idAlumno = m.idAlumno JOIN asignatura a ON m.idAsignatura = a.idAsignatura <br>
-                  JOIN impartir i ON a.idAsignatura = i.idAsignatura JOIN profesor p ON i.idProfesor = p.idProfesor JOIN curso c ON a.curso = c.idCurso <br>
-                  ORDER BY al.idAlumno, a.idAsignatura;
+                  SELECT 
+                    alumno.idAlumno, 
+                    alumno.nombre AS nombre_alumno, 
+                    alumno.apellido1 AS apellido1_alumno, 
+                    alumno.apellido2 AS apellido2_alumno, 
+                    asignatura.idAsignatura, 
+                    asignatura.nombre AS nombre_asignatura, 
+                    profesor.idProfesor,
+                    profesor.nombre AS nombre_profesor, 
+                    profesor.apellido1 AS apellido1_profesor, 
+                    profesor.apellido2 AS apellido2_profesor, 
+                    curso.idCurso, 
+                    curso.nombreDescriptivo AS nombre_curso 
+                    FROM alumno JOIN matricula  ON alumno.idAlumno = matricula.idAlumno 
+                    JOIN asignatura  ON matricula.idAsignatura = asignatura.idAsignatura 
+                    JOIN impartir  ON asignatura.idAsignatura = impartir.idAsignatura 
+                    JOIN profesor  ON impartir.idProfesor = profesor.idProfesor 
+                    JOIN curso  ON asignatura.curso = curso.idCurso 
+                    ORDER BY 
+                    alumno.idAlumno, asignatura.idAsignatura
                 </div>
                 <img src="Consulta 10.png" class="d-block w-100" alt="...">
                 <p style="color: white;">Obtener listado de alumnos con asignaturas que cursan, profesor que las imparte y curso a que pertenecen.</p>
