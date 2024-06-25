@@ -8,10 +8,10 @@
     <script src="js/jquery-3.7.1.js"></script>
 </head>
 <body style="background-image: url(rdr2.jpg); background-size: 100%;">
-    <center><h1 style="color: white;">Jorge Alejandro Castañeda Rivas, Proyecto parcial #3</h1> </center><br><br>
+    <center><h1 style="color: white; border: 3px solid rgb(66, 27, 27); background-color: rgb(66, 27, 27) ; width: 60%;">Jorge Alejandro Castañeda Rivas, Proyecto parcial #3</h1> </center><br><br>
 
     <center>
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="width: 50%;">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="width: 60%;">
             <div class="carousel-indicators"><br><br>
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -30,7 +30,7 @@
                     SELECT * FROM alumnos;
                   </div>
                 <img src="Consulta 1.png" class="d-block w-100" alt="...">
-                <p style="color: white;">Obtener el listado de todos los alumnos de la Facultad.</p>
+                <p style="color: white; border: 3px solid rgb(66, 27, 27); background-color: rgb(66, 27, 27) ;">Obtener el listado de todos los alumnos de la Facultad.</p>
               </div>
               
               <div class="carousel-item">
@@ -39,7 +39,7 @@
                     INNER JOIN asignatura ON curso.idCurso = asignatura.curso;
                   </div>
                 <img src="Consulta 2.png" class="d-block w-100" alt="...">
-                <p style="color: white;">Obtener el listado de cursos (nombre) y las asignaturas que tiene.</p>
+                <p style="color: white; border: 3px solid rgb(66, 27, 27); background-color: rgb(66, 27, 27) ;">Obtener el listado de cursos (nombre) y las asignaturas que tiene.</p>
 
               </div>
               <div class="carousel-item">
@@ -47,91 +47,75 @@
                   SELECT alumno.nombre, alumno.apellido1, alumno.apellido2 FROM alumno WHERE alumno.beca LIKE 'si%'
                 </div>
                 <img src="Consulta 3.png" class="d-block w-100" alt="...">
-                <p style="color: white;">Obtener el listado de alumnos que tengan beca.</p>
+                <p style="color: white; border: 3px solid rgb(66, 27, 27); background-color: rgb(66, 27, 27) ;">Obtener el listado de alumnos que tengan beca.</p>
               </div>
               <div class="carousel-item">
                 <div class="alert alert-primary" role="alert">
                   SELECT profesor.nombre,profesor.apellido1,profesor.apellido2, tlfcontactoprof.telefono FROM profesor INNER JOIN tlfcontactoprof ON tlfcontactoprof.idProfesor= profesor.idProfesor
                 </div>
                 <img src="Consulta 4.png" class="d-block w-100" alt="...">
-                <p style="color: white;">Obtener el listado de profesores (nombre y apellido), y su número de contacto.</p>
+                <p style="color: white; border: 3px solid rgb(66, 27, 27); background-color: rgb(66, 27, 27) ;">Obtener el listado de profesores (nombre y apellido), y su número de contacto.</p>
               </div>
               <div class="carousel-item">
                 <div class="alert alert-primary" role="alert">
-                  SELECT alumno.* FROM alumno INNER JOIN matricula ON alumno.idAlumno = matricula.idAlumno <br>
-                  INNER JOIN asignatura <br>
-                  ON matricula.idAsignatura = asignatura.idAsignatura WHERE asignatura.nombre = "Programacion"
+                  SELECT alumno.idAlumno,alumno.NIF, alumno.nombre, alumno.apellido1, alumno.apellido2, alumno.email, alumno.direccion, alumno.codigoPostal, alumno.municipio, alumno.provincia, alumno.beca, asignatura.nombre 
+                  FROM alumno INNER JOIN matricula ON alumno.idAlumno = matricula.idAlumno 
+                  INNER JOIN asignatura ON matricula.idAsignatura = asignatura.idAsignatura WHERE asignatura.nombre LIKE 'Programacion';
                 </div>
                 <img src="Consulta 5.PNG" class="d-block w-100" alt="...">
-                <p style="color: white;">Obtener el listado de los alumnos (todos los campos) que están inscritos a la asignatura de programación </p>
+                <p style="color: white; border: 3px solid rgb(66, 27, 27); background-color: rgb(66, 27, 27) ;">Obtener el listado de los alumnos (todos los campos) que están inscritos a la asignatura de programación </p>
               </div>
               <div class="carousel-item">
                 <div class="alert alert-primary" role="alert">
-                  SELECT profesor.*, asignatura.* FROM profesor INNER JOIN asignatura ON profesor.idProfesor = asignatura.coordinador ORDER BY profesor.nombre, asignatura.nombre
+                  SELECT profesor.nombre, profesor.apellido1, profesor.apellido2, asignatura.nombre FROM profesor INNER JOIN asignatura ON profesor.idProfesor = asignatura.coordinador;
                 </div>
                 <img src="Consulta 6.PNG" class="d-block w-100" alt="...">
-                <p style="color: white;">Obtener listado de los profesores y asignaturas que imparten</p>
+                <p style="color: white; border: 3px solid rgb(66, 27, 27); background-color: rgb(66, 27, 27) ;">Obtener listado de los profesores y asignaturas que imparten</p>
               </div>
               <div class="carousel-item">
                 <div class="alert alert-primary" role="alert">
-                  SELECT asignatura.nombre AS nombre_asignatura, COUNT(matricula.idAlumno) AS total_alumnos_inscritos FROM asignatura 
-                  INNER JOIN matricula 
-                  ON asignatura.idAsignatura = matricula.idAsignatura GROUP BY asignatura.idAsignatura ORDER BY total_alumnos_inscritos DESC
+                  SELECT asignatura.nombre AS Nombre_de_la_asignatura, COUNT(matricula.idAlumno) AS Total_de_alumnos FROM asignatura <br>
+                  INNER JOIN matricula ON asignatura.idAsignatura = matricula.idAsignatura GROUP BY asignatura.idAsignatura ORDER BY Total_de_alumnos DESC;
+
                 </div>
                 <img src="Consulta 7.PNG" class="d-block w-100" alt="...">
-                <p style="color: white;">Mostrar la asignatura que tiene mas alumnos inscritos y su total</p>
+                <p style="color: white; border: 3px solid rgb(66, 27, 27); background-color: rgb(66, 27, 27) ;">Mostrar la asignatura que tiene mas alumnos inscritos y su total</p>
               </div>
               <div class="carousel-item">
                 <div class="alert alert-primary" role="alert">
-                  SELECT alumno.* FROM alumno 
-                  INNER JOIN matricula 
-                  ON alumno.idAlumno = matricula.idAlumno INNER JOIN asignatura ON matricula.idAsignatura = asignatura.idAsignatura WHERE asignatura.coordinador = 'PR016'
+                  SELECT alumno.nombre, alumno.apellido1, alumno.apellido2, profesor.nombre, profesor.apellido1, profesor.apellido2, profesor.idProfesor FROM alumno <br>
+                  INNER JOIN matricula ON alumno.idAlumno = matricula.idAlumno INNER JOIN profesor <br>
+                  ON profesor.idProfesor = profesor.idProfesor WHERE profesor.idProfesor LIKE 'PR048';
                 </div>
                 <img src="Consulta 8.PNG" class="d-block w-100" alt="...">
-                <p style="color: white;">Obtener el listado de alumnos que les da clase el profesor con id PR048 (José Manuel) , sin importar en que asignatura esté inscrito.</p>
+                <p style="color: white; border: 3px solid rgb(66, 27, 27); background-color: rgb(66, 27, 27) ;">Obtener el listado de alumnos que les da clase el profesor con id PR048 (José Manuel) , sin importar en que asignatura esté inscrito.</p>
               </div>
               <div class="carousel-item">
                 <div class="alert alert-primary" role="alert">
-                  SELECT c.idCurso, c.nombreDescriptivo AS nombre_curso, a.idAsignatura, a.nombre AS nombre_asignatura, p.idProfesor, p.nombre AS nombre_profesor, p.apellido1 AS apellido1_profesor, p.apellido2 AS apellido2_profesor 
-                  FROM curso c JOIN asignatura a ON c.idCurso = a.curso JOIN impartir i ON a.idAsignatura = i.idAsignatura JOIN profesor p 
-                  ON i.idProfesor = p.idProfesor ORDER BY c.idCurso, a.idAsignatura, p.idProfesor
+                  SELECT curso.nombreDescriptivo, asignatura.nombre, profesor.nombre, profesor.apellido1, profesor.apellido2 FROM curso <br>
+                  JOIN asignatura ON curso.idCurso = asignatura.curso JOIN impartir ON asignatura.idAsignatura = impartir.idAsignatura <br>
+                  JOIN profesor ON impartir.idProfesor = profesor.idProfesor ORDER BY curso.idCurso, asignatura.idAsignatura, profesor.idProfesor;
                 </div>
                 <img src="Consulta 9.png" class="d-block w-100" alt="...">
-                <p style="color: white;">Obtener lista de cursos con asignatura y maestro que las imparte.</p>
+                <p style="color: white; border: 3px solid rgb(66, 27, 27); background-color: rgb(66, 27, 27) ;">Obtener lista de cursos con asignatura y maestro que las imparte.</p>
               </div>
               <div class="carousel-item">
                 <div class="alert alert-primary" role="alert">
-                  SELECT 
-                    alumno.idAlumno, 
-                    alumno.nombre AS nombre_alumno, 
-                    alumno.apellido1 AS apellido1_alumno, 
-                    alumno.apellido2 AS apellido2_alumno, 
-                    asignatura.idAsignatura, 
-                    asignatura.nombre AS nombre_asignatura, 
-                    profesor.idProfesor,
-                    profesor.nombre AS nombre_profesor, 
-                    profesor.apellido1 AS apellido1_profesor, 
-                    profesor.apellido2 AS apellido2_profesor, 
-                    curso.idCurso, 
-                    curso.nombreDescriptivo AS nombre_curso 
-                    FROM alumno JOIN matricula  ON alumno.idAlumno = matricula.idAlumno 
-                    JOIN asignatura  ON matricula.idAsignatura = asignatura.idAsignatura 
-                    JOIN impartir  ON asignatura.idAsignatura = impartir.idAsignatura 
-                    JOIN profesor  ON impartir.idProfesor = profesor.idProfesor 
-                    JOIN curso  ON asignatura.curso = curso.idCurso 
-                    ORDER BY 
-                    alumno.idAlumno, asignatura.idAsignatura
+                  SELECT alumno.nombre, alumno.apellido1, alumno.apellido2, asignatura.nombre, profesor.nombre, profesor.apellido1, profesor.apellido2, curso.nombreDescriptivo FROM alumno <br>
+                  JOIN matricula ON alumno.idAlumno = matricula.idAlumno JOIN asignatura ON matricula.idAsignatura = asignatura.idAsignatura <br>
+                  JOIN impartir ON asignatura.idAsignatura = impartir.idAsignatura JOIN profesor ON impartir.idProfesor = profesor.idProfesor <br>
+                  JOIN curso ON asignatura.curso = curso.idCurso ORDER BY alumno.idAlumno, asignatura.idAsignatura;
                 </div>
                 <img src="Consulta 10.png" class="d-block w-100" alt="...">
-                <p style="color: white;">Obtener listado de alumnos con asignaturas que cursan, profesor que las imparte y curso a que pertenecen.</p>
+                <p style="color: white; border: 3px solid rgb(66, 27, 27); background-color: rgb(66, 27, 27) ;">Obtener listado de alumnos con asignaturas que cursan, profesor que las imparte y curso a que pertenecen.</p>
               </div>
             </div><br><br><br>
             </center>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" style="background-color: gray;">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" style="color: white; border: 3px solid rgb(66, 27, 27); background-color: rgb(66, 27, 27) ;">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" style="background-color: gray;">
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" style="color: white; border: 3px solid rgb(66, 27, 27); background-color: rgb(66, 27, 27) ;">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
