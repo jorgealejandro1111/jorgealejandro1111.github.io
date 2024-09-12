@@ -7,12 +7,15 @@
     $consola = $_GET["consola"];
 
     //obtienen los valores
+    echo "<center><h1>JORGE ALEJANDRO CASTAÑEDA RIVAS</h1></center>";
 
     if($edad > 18){
         echo "<h1>".$nombre." es mayor de edad</h1>";
     } else {
         echo "<h1>".$nombre." NO es mayor de edad</h1>";
     }
+
+
     
     echo "<h1>Nombre del Alumno: ".$nombre."</h1>";
 
