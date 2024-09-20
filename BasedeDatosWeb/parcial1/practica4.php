@@ -11,8 +11,12 @@
     $pregunta8 = $_POST["pregunta8"];
     $pregunta9 = $_POST["pregunta9"];
     $pregunta10 = $_POST["pregunta10"];
+    $nombre = $_POST["nombre"];
+    $final;
 
+    echo "<div style='padding: 20px'";
 
+    echo "<h2>ALUMNO: $nombre </h2><hr>"; 
 
     if($pregunta1 == "GOW"){
         $aciertos++;
@@ -150,6 +154,15 @@
         echo "<img src='incorrecta.png' width='50px'><hr>";
     }
     
-    echo "CALIFICACIÓN FINAl = " . ($aciertos * 10) . "%";
+ 
+    $final = $aciertos * 10;
 
+    if($final >=80 && $final<=100){
+        echo "<h1 style='font-family: Impact; color: green;' >CALIFICACIÓN FINAl = " . ($aciertos * 10) . "% </h1> <img src='bien.png' width='100px'>GG EZ<hr>";
+    }elseif($final >= 50 && $final <= 80){
+        echo "<h1 style='font-family: Impact; color: #e5be01;' >CALIFICACIÓN FINAl = " . ($aciertos * 10) . "% </h1> <img src='maomeno.png' width='100px'> tabien<hr>";
+    }elseif($final <= 50){
+        echo "<h1 style='font-family: Impact; color: red;' >CALIFICACIÓN FINAl = " . ($aciertos * 10) . "% </h1> <img src='mal.jpg' width='100px'>JAJAJAJAJAJA (perdon w)<hr>";
+    }
+    echo "</div>";
 ?>

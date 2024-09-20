@@ -6,12 +6,19 @@
     <title>Examen en línea</title>
     <link rel="stylesheet" href="css/bootstrap.css">
 </head>
-<body>
+<body style="background-image: url(FONDO.png); background-repeat:no-repeat; background-color: #feae83 ;">
     <div class="container">
         <form action="practica4.php" method="POST">
             <div class="row">
-                <h1 style="color: red;">Exámen de videojuegos</h1><hr>
-                    <div class="card mb-4">
+                <center><h1 style="color: rgb(255, 255, 255); font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Exámen de videojuegos</h1></center><hr>
+                <div class="card p-4 mb-4" style="background-color: #9f709d;">
+                    <p>
+                        ¿CÓMO TE LLAMAS? <input style="background-color: #cd74a2;" type="text" name="nombre" required> 
+                    </p>
+                </div>
+
+
+                    <div class="card mb-4" style="background-color: #9f709d;">
                         <div class="card-header">
                         1. ¿Qué juego ganó el GOTY en 2018?
                         </div>
@@ -21,12 +28,12 @@
                             <p><input type="radio" name="pregunta1" value="Celeste" required> Celeste </p>
                         </div>
                     </div>
-                    <div class="card p-4 mb-4">
+                    <div class="card p-4 mb-4" style="background-color: #9f709d;">
                         <p>
-                            2. <input type="text" name="pregunta2" required> tendrá la peor película del 2025
+                            2. <input style="background-color: #feae83;" type="text" name="pregunta2" required> tendrá la peor película del 2025
                         </p>
                     </div>
-                    <div class="card mb-4">
+                    <div class="card mb-4"style="background-color: #9f709d;">
                         <div class="card-header">
                         3. Selecciona 2 videojuegos más esperados de los proximos años
                         </div>
@@ -36,7 +43,7 @@
                             <p><input type="checkbox" name="pregunta3[]" value="The Last Of Us" > The Last Of Us </p>
                         </div>
                     </div>
-                    <div class="card mb-4">
+                    <div class="card mb-4"style="background-color: #9f709d;">
                         <div class="card-header">
                         4. Según Metacritic, ¿Cuál es el videojuego mejor valorado de la historia?
                         </div>
@@ -47,13 +54,13 @@
                         </div>
                     </div>
 
-                    <div class="card p-4 mb-4">
+                    <div class="card p-4 mb-4"style="background-color: #9f709d;">
                         <p>
-                            5. <input type="text" name="pregunta5" required> es el videojuego más vendido de la historia
+                            5. <input style="background-color: #feae83;" type="text" name="pregunta5" required> es el videojuego más vendido de la historia
                         </p>
                     </div>
 
-                    <div class="card mb-4">
+                    <div class="card mb-4"style="background-color: #9f709d;">
                         <div class="card-header">
                         6. ¿Cuál es la consola más vendida de la historia?
                         </div>
@@ -64,19 +71,19 @@
                         </div>
                     </div>
 
-                    <div class="card p-4 mb-4">
+                    <div class="card p-4 mb-4"style="background-color: #9f709d;">
                         <p>
-                            7. <input type="text" name="pregunta7" required> es el género de videojuegos más popular
+                            7. <input style="background-color: #feae83;" type="text" name="pregunta7" required> es el género de videojuegos más popular
                         </p>
                     </div>
 
-                    <div class="card p-4 mb-4">
+                    <div class="card p-4 mb-4"style="background-color: #9f709d;">
                         <p>
-                            8. <input type="text" name="pregunta8" required> es la creadora de la franquicia "Super Mario"
+                            8. <input style="background-color: #feae83;" type="text" name="pregunta8" required> es la creadora de la franquicia "Super Mario"
                         </p>
                     </div>
 
-                    <div class="card mb-4">
+                    <div class="card mb-4"style="background-color: #9f709d;">
                         <div class="card-header">
                         9. Selecciona los 2 mejores lugares para jugar videojuegos
                         </div>
@@ -87,7 +94,7 @@
                         </div>
                     </div>
 
-                    <div class="card mb-4">
+                    <div class="card mb-4"style="background-color: #9f709d;">
                         <div class="card-header">
                         10. ¿Qué videojuego popularizó el modelo de negocio “free-to-play” con microtransacciones?
                         </div>
@@ -99,7 +106,7 @@
                     </div>
 
             </div>
-            <br><input type="submit" class="btn btn-primary" value="Terminar examen">
+            <br> <center><input style="background-color: #5a5c8d;" type="submit" class="btn btn-primary" value="Terminar examen"></center>
         </form>
     </div>
 </body>
