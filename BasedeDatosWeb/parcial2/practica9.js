@@ -1,12 +1,13 @@
 $(document).ready(function(){
     let cartas =new Array(54).fill(false);
-
+    var cont = 0;
+    var n_carta =0;
     //funcion click del boton dar carta :v
     $("#dar_carta").click(function(){
 
         var b = true;
 
-        var cont = 0;
+ 
         while(b){
             var num = Math.floor(Math.random()*54) + 1;
             console.log("Numero de carta="+num);
