@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Descargador de videos</title>
+<style>
+:root{--bg:#0b0b12;--card:#14141f;--line:#262638;--txt:#f2f2f8;--mut:#9a9ab0;--a:#8b5cf6;--b:#06b6d4;--err:#f87171;--ok:#4ade80}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--txt);
+background:radial-gradient(900px 500px at 15% -10%,#2a1a5e66,transparent),radial-gradient(800px 500px at 100% 0%,#06304066,transparent),var(--bg);
+display:flex;align-items:center;justify-content:center;padding:20px}
+.card{width:100%;max-width:560px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:0 20px 60px #0009}
+h1{margin:0 0 4px;font-size:1.8rem;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{margin:0 0 22px;color:var(--mut);font-size:.95rem}
+.row{display:flex;gap:8px}
+input[type=text],select{width:100%;background:#0e0e18;border:1px solid var(--line);color:var(--txt);border-radius:12px;padding:14px;font-size:1rem;outline:none}
+input:focus,select:focus{border-color:var(--a)}
+button{font:inherit;cursor:pointer;border:0;border-radius:12px}
+.pegar{background:#1e1e30;color:var(--txt);padding:0 16px;border:1px solid var(--line);white-space:nowrap}
+.seg{display:flex;background:#0e0e18;border:1px solid var(--line);border-radius:12px;padding:4px;margin:14px 0}
+.seg button{flex:1;padding:11px;background:transparent;color:var(--mut)}
+.seg button.on{background:linear-gradient(90deg,var(--a),var(--b));color:#fff;font-weight:600}
+.go{width:100%;margin-top:14px;padding:15px;font-size:1.05rem;font-weight:700;color:#fff;background:linear-gradient(90deg,var(--a),var(--b))}
+.go:disabled{opacity:.5;cursor:default}
+.stop{display:none;width:100%;margin-top:8px;padding:11px;background:transparent;color:var(--mut);border:1px solid var(--line)}
+.bar{height:8px;background:#0e0e18;border-radius:99px;overflow:hidden;margin-top:20px;display:none}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--a),var(--b));transition:width .3s}
+#msg{margin-top:14px;font-size:.95rem;color:var(--mut);word-break:break-word;min-height:1.2em}
+#msg.err{color:var(--err)}
+#msg.ok{color:var(--ok)}
+.save{display:none;margin-top:12px;text-align:center;text-decoration:none;padding:14px;border-radius:12px;background:#16a34a;color:#fff;font-weight:700}
+details{margin-top:22px;color:var(--mut);font-size:.85rem;display:none}
+details input{margin-top:8px;padding:10px;font-size:.9rem}
+summary{cursor:pointer}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Descargador de videos</h1>
+  <p class="sub">Pega el link, elige y listo.</p>
+
+  <div class="row">
+    <input id="url" type="text" placeholder="https://..." autocomplete="off" autocapitalize="off" spellcheck="false">
+    <button class="pegar" id="pegar" type="button">Pegar</button>
+  </div>
+
+  <div class="seg">
+    <button type="button" id="mVideo" class="on">Video</button>
+    <button type="button" id="mAudio">Solo audio (mp3)</button>
+  </div>
+
+  <select id="calidad">
+    <option value="max">Máxima calidad</option>
+    <option value="2160">Hasta 4K</option>
+    <option value="1440">Hasta 1440p</option>
+    <option value="1080">Hasta 1080p</option>
+    <option value="720">Hasta 720p</option>
+    <option value="480">Hasta 480p</option>
+    <option value="360">Hasta 360p</option>
+  </select>
+
+  <button class="go" id="go" type="button">Descargar</button>
+  <button class="stop" id="stop" type="button">Cancelar</button>
+
+  <div class="bar" id="bar"><i id="fill"></i></div>
+  <div id="msg"></div>
+  <a class="save" id="save" href="#">Guardar archivo</a>
+
+  <details id="cfg">
+    <summary>Servidor</summary>
+    <input id="srv" type="text" placeholder="http://localhost:5000">
+    <button class="pegar" id="srvOk" type="button" style="margin-top:8px;padding:9px 14px">Guardar</button>
+  </details>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const enPages = location.hostname.endsWith("github.io");
+let modo = "video", id = null, timer = null, SERVER = "";
+
+function leer(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+function guardar(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+
+if (enPages) {
+  SERVER = leer("srv") || "http://localhost:5000";
+  $("#cfg").style.display = "block";
+  $("#srv").value = SERVER;
+  $("#srvOk").onclick = () => { SERVER = $("#srv").value.trim().replace(/\/$/, ""); guardar("srv", SERVER); msg("Servidor guardado.", "ok"); };
+}
+
+function msg(t, c){ const m = $("#msg"); m.textContent = t; m.className = c || ""; }
+function barra(p){ $("#fill").style.width = p + "%"; }
+function ocupado(b){
+  $("#go").disabled = b;
+  $("#stop").style.display = b ? "block" : "none";
+  $("#bar").style.display = b ? "block" : "none";
+  if (b) $("#save").style.display = "none";
+}
+
+function setModo(m){
+  modo = m;
+  $("#mVideo").classList.toggle("on", m === "video");
+  $("#mAudio").classList.toggle("on", m === "audio");
+  $("#calidad").style.display = m === "video" ? "block" : "none";
+}
+$("#mVideo").onclick = () => setModo("video");
+$("#mAudio").onclick = () => setModo("audio");
+
+$("#pegar").onclick = async () => {
+  try { $("#url").value = (await navigator.clipboard.readText()).trim(); }
+  catch(e){ msg("Tu navegador no deja pegar con el botón. Pega el link a mano en el cuadro.", "err"); }
+};
+
+async function iniciar(){
+  const url = $("#url").value.trim();
+  if (!/^https?:\/\//i.test(url)) return msg("Pega un link que empiece con http o https.", "err");
+  ocupado(true); barra(0); msg("Iniciando...");
+  try {
+    const r = await fetch(SERVER + "/api/start", {
+      method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({url, modo, calidad: $("#calidad").value})
+    });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error || "Error");
+    id = d.id; sondear();
+  } catch(e){
+    ocupado(false);
+    msg(enPages ? "No pude conectar con tu servidor. ¿Está prendido iniciar.bat?" : "Error: " + e.message, "err");
+  }
+}
+
+async function sondear(){
+  try {
+    const r = await fetch(SERVER + "/api/status?id=" + id);
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error || "Error");
+    barra(d.progreso || 0);
+    if (d.estado === "trabajando") { msg(d.texto); timer = setTimeout(sondear, 800); return; }
+    ocupado(false);
+    if (d.estado === "listo") {
+      msg("Listo: " + d.nombre, "ok");
+      const a = $("#save");
+      a.href = SERVER + "/api/file?id=" + id;
+      a.style.display = "block";
+      a.click();
+    } else {
+      msg(d.texto, d.estado === "error" ? "err" : "");
+    }
+  } catch(e){
+    ocupado(false); msg("Se perdió la conexión con el servidor.", "err");
+  }
+}
+
+$("#go").onclick = iniciar;
+$("#url").addEventListener("keydown", e => { if (e.key === "Enter") iniciar(); });
+$("#stop").onclick = async () => {
+  clearTimeout(timer);
+  try { await fetch(SERVER + "/api/cancel", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({id})}); } catch(e){}
+  ocupado(false); msg("Descarga cancelada.");
+};
+setModo("video");
+</script>
+</body>
+</html>
