@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Porchi Noticias - Edición Digital N 01</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #ffffff;
+    color: #222;
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.5;
+  }
+
+  .pagina {
+    width: 100%;
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 24px 16px 20px;
+  }
+
+  /* ENCABEZADO */
+  .titulo-periodico {
+    font-family: "Times New Roman", Times, serif;
+    font-weight: normal;
+    font-size: 64px;
+    letter-spacing: 3px;
+    text-align: center;
+    color: #111;
+    line-height: 1.1;
+    padding: 0 0 14px;
+  }
+
+  .barra-info {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+    padding: 5px 0;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 13px;
+    color: #444;
+    margin: 0 0 28px;
+  }
+
+  /* NOTICIA PRINCIPAL */
+  .titular-principal {
+    font-size: 28px;
+    font-weight: bold;
+    color: #111;
+    line-height: 1.2;
+  }
+
+  .bajada {
+    font-style: italic;
+    font-size: 13px;
+    color: #666;
+    margin: 2px 0 10px;
+  }
+
+  /* COLUMNAS PRINCIPALES */
+  .contenido {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .col-izq {
+    padding-right: 60px;
+  }
+
+  .col-der {
+    border-left: 1px solid #111;
+    padding-left: 22px;
+    padding-bottom: 20px;
+  }
+
+  .imagen-nota {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #333;
+  }
+
+  .texto-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 22px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #111;
+  }
+
+  p {
+    font-size: 13px;
+    line-height: 1.65;
+    color: #333;
+  }
+
+  .texto-1col {
+    margin-top: 20px;
+    padding-right: 90px;
+  }
+
+  .texto-1col p + p {
+    margin-top: 14px;
+  }
+
+  /* COLUMNA DERECHA */
+  .titular-nota {
+    font-size: 22px;
+    font-weight: bold;
+    color: #111;
+    line-height: 1.15;
+  }
+
+  .col-der .bajada {
+    margin: 3px 0 8px;
+  }
+
+  .col-der .imagen-nota {
+    margin-bottom: 22px;
+  }
+
+  .col-der p {
+    padding-right: 90px;
+  }
+
+  .col-der p + p {
+    margin-top: 14px;
+  }
+
+  .separador {
+    border: 0;
+    border-top: 1px solid #bbb;
+    margin: 20px 0 18px;
+  }
+
+  /* EN BREVE */
+  .en-breve {
+    border-top: 1px solid #111;
+    border-bottom: 1px solid #111;
+    margin-top: 10px;
+    padding: 12px 0 18px;
+  }
+
+  .en-breve h3 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #111;
+  }
+
+  .breves {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .breve {
+    border-left: 1px solid #ddd;
+    padding: 0 12px 28px 16px;
+    min-height: 90px;
+  }
+
+  .breve strong {
+    display: block;
+    font-size: 13px;
+    color: #111;
+  }
+
+  .breve span {
+    font-size: 11.5px;
+    line-height: 1.4;
+    color: #444;
+  }
+
+  /* PIE */
+  .pie {
+    text-align: center;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 11px;
+    color: #888;
+    padding-top: 12px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .titulo-periodico { font-size: 38px; letter-spacing: 1px; }
+    .barra-info { flex-direction: column; align-items: center; gap: 2px; }
+    .titular-principal { font-size: 22px; }
+    .contenido { grid-template-columns: 1fr; }
+    .col-izq { padding-right: 0; }
+    .col-der { border-left: 0; padding-left: 0; margin-top: 24px; }
+    .texto-1col, .col-der p { padding-right: 0; }
+    .breves { grid-template-columns: 1fr; }
+    .breve { min-height: 0; border-left: 0; border-top: 1px solid #ddd; padding: 10px 0; }
+  }
+</style>
+</head>
+<body>
+  <div class="pagina">
+
+    <header>
+      <h1 class="titulo-periodico">PORCHI NOTICIAS&nbsp;</h1>
+      <div class="barra-info">
+        <span>Edición Digital&nbsp; N 01</span>
+        <span>Jueves 1 de octubre</span>
+        <span>Sección: Videojuegos</span>
+      </div>
+    </header>
+
+    <main>
+      <h2 class="titular-principal">Fortnite estrena temporada con mapa totalmente renovado</h2>
+      <p class="bajada">Epic Games promete el cambio más grande desde el capítulo anterior</p>
+
+      <div class="contenido">
+
+        <!-- COLUMNA IZQUIERDA -->
+        <article class="col-izq">
+          <img class="imagen-nota" src="imagenes/fortnite.jpg" alt="Personajes de Fortnite de la nueva temporada">
+
+          <div class="texto-2col">
+            <p>Los creadores de contenido ya analizan las nuevas mecánicas y comparan el mapa con versiones anteriores del juego.</p>
+            <p>Se espera que la comunidad compita esta semana en los primeros torneos oficiales de la temporada.</p>
+          </div>
+
+          <div class="texto-1col">
+            <p>La nueva temporada llega con zonas inéditas, un sistema de clima dinámico y vehículos rediseñados. Los jugadores ya reportan cambios notables en el ritmo de las partidas y en los puntos de aterrizaje más populares.</p>
+            <p>Entre las novedades destaca un pase de batalla con colaboraciones sorpresa y nuevos modos por tiempo limitado durante las primeras semanas de la temporada.</p>
+          </div>
+        </article>
+
+        <!-- COLUMNA DERECHA -->
+        <div class="col-der">
+          <article>
+            <h2 class="titular-nota">Remake clásico<br>llega a consola</h2>
+            <p class="bajada">Resident Evil 3 se confirma en Switch 2</p>
+            <img class="imagen-nota" src="imagenes/resident-evil-3.jpg" alt="Portada de Resident Evil 3">
+            <p>El remake trae mejoras gráficas, controles adaptados y nuevos extras exclusivos de la consola. La fecha de lanzamiento se dará a conocer próximamente.</p>
+          </article>
+
+          <hr class="separador">
+
+          <article>
+            <h2 class="titular-nota">Polémica por el<br>matchmaking cruzado</h2>
+            <p class="bajada">Jugadores debaten el sistema entre plataformas</p>
+            <p>El nuevo sistema de matchmaking basado en el tipo de control genera opiniones divididas entre quienes juegan en consola y quienes usan teclado y mouse.</p>
+            <p>Los desarrolladores señalan que buscan partidas más justas, pero parte de la comunidad pide más opciones para elegir con quién competir.</p>
+          </article>
+        </div>
+
+      </div>
+    </main>
+
+    <section class="en-breve">
+      <h3>EN BREVE</h3>
+      <div class="breves">
+        <div class="breve">
+          <strong>Actualización sorpresa</strong>
+          <span>corrige fallos reportados por la comunidad esta semana.</span>
+        </div>
+        <div class="breve">
+          <strong>Torneo regional</strong>
+          <span>reúne a equipos locales el próximo fin de semana.</span>
+        </div>
+        <div class="breve">
+          <strong>Nuevo tráiler</strong>
+          <span>adelanta contenido para la próxima temporada.</span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="pie">PORCHI NOTICIAS · Página 1</footer>
+
+  </div>
+</body>
+</html>

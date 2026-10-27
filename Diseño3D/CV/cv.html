@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Curriculum Vitae</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #e9ecef;
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    color: #2b2f36;
+    line-height: 1.55;
+    font-size: 14px;
+  }
+
+  .hoja {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    max-width: 850px;
+    min-height: 1100px;
+    margin: 24px auto;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, .15);
+  }
+
+  /* BARRA LATERAL */
+  aside {
+    background: #1f3a4d;
+    color: #e8eef2;
+    padding: 36px 24px;
+  }
+
+  .foto {
+    display: block;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 30%;
+    border: 3px solid #8fc1d9;
+    margin: 0 auto 28px;
+  }
+
+  aside h2 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #8fc1d9;
+    border-bottom: 1px solid #3d5a6e;
+    padding-bottom: 5px;
+    margin: 28px 0 10px;
+  }
+
+  aside h2:first-child { margin-top: 0; }
+
+  aside p, aside li { font-size: 13px; }
+  aside ul { list-style: none; }
+  aside li { margin-bottom: 6px; }
+  aside strong { display: block; color: #fff; font-weight: 600; }
+
+  /* CONTENIDO */
+  main { padding: 36px 36px 36px 34px; }
+
+  .nombre {
+    font-size: 32px;
+    line-height: 1.15;
+    color: #1f3a4d;
+    font-weight: 700;
+  }
+
+  .puesto {
+    font-size: 16px;
+    color: #5a6872;
+    margin: 4px 0 22px;
+  }
+
+  main h2 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1f3a4d;
+    border-bottom: 2px solid #1f3a4d;
+    padding-bottom: 3px;
+    margin: 26px 0 12px;
+  }
+
+  .item { margin-bottom: 14px; }
+
+  .item h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #222;
+  }
+
+  .item .detalle {
+    font-size: 12.5px;
+    color: #6a7782;
+    margin-bottom: 3px;
+  }
+
+  .item ul { margin: 4px 0 0 18px; }
+  .item li { margin-bottom: 2px; }
+
+  /* IMPRESIÓN */
+  @page { size: A4; margin: 0; }
+  @media print {
+    body { background: #fff; }
+    .hoja { margin: 0; box-shadow: none; max-width: none; min-height: 100vh; }
+    aside { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  /* CELULAR */
+  @media (max-width: 700px) {
+    .hoja { grid-template-columns: 1fr; margin: 0; }
+    main { padding: 28px 22px; }
+  }
+</style>
+</head>
+<body>
+  <div class="hoja">
+
+    <aside>
+      <img src="imagenes/foto1.jpg" alt="Foto" width="150" height="150" class="foto">
+
+      <h2>Contacto</h2>
+      <ul>
+        <li><strong>Teléfono</strong>6672910631</li>
+        <li><strong>Correo</strong>jorge.acrivas@gmail.com</li>
+        <li><strong>Ubicación</strong>Culiacán, Sinaloa</li>
+      </ul>
+
+      <h2>Habilidades</h2>
+      <ul>
+        <li>Bases de datos</li>
+        <li>Redes de computadoras</li>
+        <li>Electrónica aplicada</li>
+        <li>Trabajo en equipo</li>
+        <li>Creatividad e innovación</li>
+      </ul>
+
+      <h2>Idiomas</h2>
+      <ul>
+        <li><strong>Español</strong>Nativo</li>
+        <li><strong>Inglés</strong>En desarrollo</li>
+      </ul>
+    </aside>
+
+    <main>
+      <h1 class="nombre">Jorge Alejandro Castañeda Rivas&nbsp;</h1>
+      <p class="puesto">Estudiante de Ingeniería en Software</p>
+
+      <section>
+        <h2>Perfil.</h2>
+        <p>Estudiante de Ingeniería en Software con experiencia en proyectos en equipo de bases de datos, redes y electrónica. Busco una oportunidad para aplicar lo aprendido y seguir creciendo en el desarrollo de software.</p>
+      </section>
+
+      <section>
+        <h2>Educación</h2>
+        <div class="item">
+          <h3>Ingeniería en Software</h3>
+          <p class="detalle">Universidad Autónoma de Occidente (UAdeO), Culiacán · 2025 – Actualidad</p>
+          <p>Materias cursadas: Cálculo Diferencial e Integral, Bases de Datos, Redes de Computadoras, Electrónica Aplicada, Fundamentos de la Investigación, Ética y Profesión, Creatividad e Innovación.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Proyectos</h2>
+        <div class="item">
+          <h3>Proyectos académicos en equipo</h3>
+          <p class="detalle">UAdeO · 2025 – Actualidad</p>
+          <ul>
+            <li>Trabajo colaborativo en proyectos de varias materias de la carrera.</li>
+            <li>Investigación y presentación de trabajos escritos y digitales.</li>
+          </ul>
+        </div>
+        <div class="item">
+          <h3>Nombre de tu proyecto</h3>
+          <p class="detalle">2026&nbsp;</p>
+          <ul>
+            <li>proyecto de ejemplo xd.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Experiencia</h2>
+        <div class="item">
+          <h3>Puesto o actividad</h3>
+          <p class="detalle">Empresa o lugar · 2020– 2026</p>
+          <ul>
+            <li>bla bla bla bla.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+  </div>
+</body>
+</html>
